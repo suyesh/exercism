@@ -1,18 +1,16 @@
 class Raindrops
-  class << self
-    def convert(num)
-        result = ''
-        sounds = { 3 => 'Pling', 5 => 'Plang', 7 => 'Plong' }
-        if num % 3 != 0 && num % 5 != 0 && num % 7 != 0
-          return num.to_s
-        else
-          sounds.keys.each { |sound| num % sound == 0 ? result << sounds[sound] : 'Error' }
-        end
-        result
+    class << self
+      def convert(num)
+        words = %W(
+            #{'Pling' if num % 3 == 0}
+            #{'Plang' if num % 5 == 0}
+            #{'Plong' if num % 7 == 0}
+        ).join
+        words.empty? ? num.to_s : words
+      end
     end
-  end
 end
 
 module BookKeeping
-    VERSION = 3
+  VERSION = 3
 end
